@@ -1,7 +1,9 @@
 package com.example.keepitup.service.impl;
 
 import com.example.keepitup.model.dtos.WeighInsDTO;
+import com.example.keepitup.model.entities.Users;
 import com.example.keepitup.model.entities.WeighIns;
+import com.example.keepitup.repository.UsersRepository;
 import com.example.keepitup.repository.WeighInsRepository;
 import com.example.keepitup.service.WeighInsService;
 import com.example.keepitup.util.mappers.WeighInsMapper;
@@ -14,12 +16,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WeighInsServiceImpl implements WeighInsService {
 
-    private WeighInsRepository weighInsRepository;
+    private final WeighInsRepository weighInsRepository;
+    private final UsersRepository usersRepository;
 
     @Override
     public WeighInsDTO logWeighIn(WeighInsDTO weighInDTO) {
+        Users user = usersRepository.findById(weighInDTO.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + weighInDTO.getUserId()));
+
         WeighIns weighIn = WeighInsMapper.weighInsDTOToEntity(weighInDTO);
+        weighIn.setUser(user);
+
         WeighIns savedWeighIn = weighInsRepository.save(weighIn);
+
         return WeighInsMapper.weighInsEntityToDTO(savedWeighIn);
     }
 

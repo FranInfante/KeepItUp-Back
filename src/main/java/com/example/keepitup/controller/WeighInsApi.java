@@ -14,5 +14,5 @@ public interface WeighInsApi {
     ResponseEntity<WeighInsDTO> logWeighIn(@RequestBody WeighInsDTO weighInDTO);
 
     @GetMapping(UriConstants.BY_ID)
-    ResponseEntity<List<WeighInsDTO>> getWeighInsByUserId(@PathVariable Integer userId);
+    ResponseEntity<List<WeighInsDTO>> getWeighInsByUserId(@PathVariable("id") Integer userId);
 }
