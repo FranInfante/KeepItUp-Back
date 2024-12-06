@@ -39,14 +39,12 @@ public class DataSeeder implements CommandLineRunner {
                 .username("user1")
                 .email("user1@example.com")
                 .password(passwordEncoder.encode("password"))
-                .createdAt(LocalDateTime.now())
                 .build();
 
         Users user2 = Users.builder()
                 .username("user2")
                 .email("user2@example.com")
                 .password(passwordEncoder.encode("password"))
-                .createdAt(LocalDateTime.now())
                 .build();
 
         UsersInfo usersInfo1 = UsersInfo.builder()

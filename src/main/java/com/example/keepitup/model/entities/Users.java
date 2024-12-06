@@ -31,9 +31,6 @@ public class Users {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UsersInfo usersInfo;
 }
