@@ -16,5 +16,5 @@ public class UsersDTO {
     private String username;
     private String email;
     private String password;
-    private UserInfoDTO usersInfo;
+    private UsersInfoDTO usersInfo;
 }

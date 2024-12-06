@@ -1,6 +1,6 @@
 package com.example.keepitup.config;
 
-import com.example.keepitup.model.entities.UserInfo;
+import com.example.keepitup.model.entities.UsersInfo;
 import com.example.keepitup.model.entities.Users;
 import com.example.keepitup.model.entities.WeighIns;
 import com.example.keepitup.model.entities.Workouts;
@@ -49,14 +49,14 @@ public class DataSeeder implements CommandLineRunner {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        UserInfo userInfo1 = UserInfo.builder()
+        UsersInfo usersInfo1 = UsersInfo.builder()
                 .initialWeight(85.0)
                 .goalWeight(75.0)
                 .workoutDaysPerWeek(4)
                 .user(user1) // Set the relationship
                 .build();
 
-        UserInfo userInfo2 = UserInfo.builder()
+        UsersInfo usersInfo2 = UsersInfo.builder()
                 .initialWeight(90.0)
                 .goalWeight(80.0)
                 .workoutDaysPerWeek(3)
@@ -64,8 +64,8 @@ public class DataSeeder implements CommandLineRunner {
                 .build();
 
         // Set bidirectional relationships
-        user1.setUserInfo(userInfo1);
-        user2.setUserInfo(userInfo2);
+        user1.setUsersInfo(usersInfo1);
+        user2.setUsersInfo(usersInfo2);
 
         usersRepository.saveAll(Arrays.asList(user1, user2));
     }

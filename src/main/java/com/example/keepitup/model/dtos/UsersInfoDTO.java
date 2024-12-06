@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserInfoDTO {
+public class UsersInfoDTO {
     private Integer id;
     private Integer userId;
     private double initialWeight;

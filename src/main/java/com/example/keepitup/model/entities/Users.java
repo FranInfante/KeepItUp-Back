@@ -35,5 +35,5 @@ public class Users {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserInfo userInfo;
+    private UsersInfo usersInfo;
 }

@@ -24,14 +24,14 @@ public class UsersMapper {
 
         // Map UserInfoDTO to UserInfo and set the relationship
         if (usersDTO.getUsersInfo() != null) {
-            userBuilder.userInfo(UsersInfoMapper.usersInfoDTOToEntity(usersDTO.getUsersInfo()));
+            userBuilder.usersInfo(UsersInfoMapper.usersInfoDTOToEntity(usersDTO.getUsersInfo()));
         }
 
         Users user = userBuilder.build();
 
         // Ensure the relationship is bidirectional
-        if (user.getUserInfo() != null) {
-            user.getUserInfo().setUser(user);
+        if (user.getUsersInfo() != null) {
+            user.getUsersInfo().setUser(user);
         }
 
         return user;
@@ -47,7 +47,7 @@ public class UsersMapper {
                 .username(users.getUsername())
                 .email(users.getEmail())
                 .password(users.getPassword())
-                .usersInfo(UsersInfoMapper.usersInfoEntityToDTO(users.getUserInfo()))
+                .usersInfo(UsersInfoMapper.usersInfoEntityToDTO(users.getUsersInfo()))
                 .build();
     }
     public List<Users> listUserDTOToEntity(List<UsersDTO> listUsersDto) {

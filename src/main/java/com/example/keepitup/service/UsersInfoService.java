@@ -1,9 +1,9 @@
 package com.example.keepitup.service;
 
 
-import com.example.keepitup.model.dtos.UserInfoDTO;
+import com.example.keepitup.model.dtos.UsersInfoDTO;
 
 public interface UsersInfoService {
-    UserInfoDTO saveUserInfo(UserInfoDTO userInfoDTO);
-    UserInfoDTO getUserInfoByUserId(Integer userId);
+    UsersInfoDTO saveUserInfo(UsersInfoDTO usersInfoDTO);
+    UsersInfoDTO getUserInfoByUserId(Integer userId);
 }

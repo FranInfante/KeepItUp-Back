@@ -2,8 +2,8 @@ package com.example.keepitup.service.impl;
 
 
 import com.example.keepitup.util.mappers.UsersInfoMapper;
-import com.example.keepitup.model.dtos.UserInfoDTO;
-import com.example.keepitup.model.entities.UserInfo;
+import com.example.keepitup.model.dtos.UsersInfoDTO;
+import com.example.keepitup.model.entities.UsersInfo;
 import com.example.keepitup.repository.UsersInfoRepository;
 import com.example.keepitup.service.UsersInfoService;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +16,15 @@ public class UsersInfoServiceImpl implements UsersInfoService {
     private UsersInfoRepository usersInfoRepository;
 
     @Override
-    public UserInfoDTO saveUserInfo(UserInfoDTO userInfoDTO) {
-        UserInfo userInfo = UsersInfoMapper.usersInfoDTOToEntity(userInfoDTO);
-        UserInfo savedUserInfo = usersInfoRepository.save(userInfo);
-        return UsersInfoMapper.usersInfoEntityToDTO(savedUserInfo);
+    public UsersInfoDTO saveUserInfo(UsersInfoDTO usersInfoDTO) {
+        UsersInfo usersInfo = UsersInfoMapper.usersInfoDTOToEntity(usersInfoDTO);
+        UsersInfo savedUsersInfo = usersInfoRepository.save(usersInfo);
+        return UsersInfoMapper.usersInfoEntityToDTO(savedUsersInfo);
     }
 
     @Override
-    public UserInfoDTO getUserInfoByUserId(Integer userId) {
-        UserInfo userInfo = usersInfoRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Info not found"));
-        return UsersInfoMapper.usersInfoEntityToDTO(userInfo);
+    public UsersInfoDTO getUserInfoByUserId(Integer userId) {
+        UsersInfo usersInfo = usersInfoRepository.findById(userId).orElseThrow(() -> new RuntimeException("User Info not found"));
+        return UsersInfoMapper.usersInfoEntityToDTO(usersInfo);
     }
 }
