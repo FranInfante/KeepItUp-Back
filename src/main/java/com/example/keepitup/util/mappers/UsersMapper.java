@@ -5,6 +5,9 @@ import com.example.keepitup.model.dtos.UsersDTO;
 import com.example.keepitup.model.entities.Users;
 import lombok.experimental.UtilityClass;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @UtilityClass
 public class UsersMapper {
 
@@ -46,5 +49,12 @@ public class UsersMapper {
                 .password(users.getPassword())
                 .usersInfo(UsersInfoMapper.usersInfoEntityToDTO(users.getUserInfo()))
                 .build();
+    }
+    public List<Users> listUserDTOToEntity(List<UsersDTO> listUsersDto) {
+        return listUsersDto.stream().map(UsersMapper::userDTOToEntity).collect(Collectors.toList());
+    }
+
+    public List<UsersDTO> listUserEntityToDTO(List<Users> listUsers) {
+        return listUsers.stream().map(UsersMapper::userEntityToDTO).collect(Collectors.toList());
     }
 }
