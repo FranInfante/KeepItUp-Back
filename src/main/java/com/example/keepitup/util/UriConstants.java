@@ -14,6 +14,7 @@ public class UriConstants {
     public static final String USERS_SEARCH = "/search";
     public static final String USERS_LOGIN = "/login";
     public static final String USERS_AUTH = "/authenticate";
+    public static final String USERS_INFO = "/information";
 
 
     public static final String INFO = BASE_URL + "/info";

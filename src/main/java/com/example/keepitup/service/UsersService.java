@@ -2,6 +2,7 @@ package com.example.keepitup.service;
 
 import com.example.keepitup.model.dtos.UsersDTO;
 import com.example.keepitup.util.UserJwt;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,5 +22,7 @@ public interface UsersService {
 
     void updateUser(Integer id, UsersDTO updateUser) throws Exception;
 
-    UserJwt authenticateUser(UsersDTO userDTO) throws Exception;
+    UserJwt createAuthenticationToken(@RequestBody UsersDTO authenticationRequest) throws Exception;
+
+    Optional<UsersDTO> getUserInformation();
 }

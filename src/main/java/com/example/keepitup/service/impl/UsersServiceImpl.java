@@ -16,6 +16,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -101,12 +104,15 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserJwt authenticateUser(UsersDTO userDTO) throws Exception {
-        String usernameOrEmail = userDTO.getUsername() != null ? userDTO.getUsername() : userDTO.getEmail();
-        authenticate(usernameOrEmail, userDTO.getPassword());
-        final String token = jwtTokenUtil.generateToken(userDetailsService.loadUserByUsername(usernameOrEmail));
+    public UserJwt createAuthenticationToken(UsersDTO authenticationRequest) throws Exception {
+        String usernameOrEmail = authenticationRequest.getUsername() != null ? authenticationRequest.getUsername() : authenticationRequest.getEmail();
+        authenticate(usernameOrEmail, authenticationRequest.getPassword());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(usernameOrEmail);
+        final String token = jwtTokenUtil.generateToken(userDetails);
         return UserJwt.builder().token(token).build();
     }
+
+
 
     private void authenticate(String usernameOrEmail, String password) throws Exception {
         try {
@@ -116,5 +122,24 @@ public class UsersServiceImpl implements UsersService {
         } catch (BadCredentialsException e) {
             throw new Exception(MessageConstants.INVALID_CREDENTIALS, e);
         }
+    }
+
+    @Override
+    public Optional<UsersDTO> getUserInformation() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserDetails)) {
+            return Optional.empty();
+        }
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        Users user = usersRepository.findByUsernameIgnoreCase(username)
+                .orElseThrow(() -> new EntityNotFoundException(MessageConstants.USER_NOT_FOUND));
+
+        UsersDTO userDTO = UsersMapper.userEntityToDTO(user);
+        userDTO.setPassword(user.getPassword());
+
+        return Optional.of(userDTO);
     }
 }
