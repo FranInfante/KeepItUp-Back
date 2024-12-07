@@ -28,7 +28,6 @@ public class WeighInsServiceImpl implements WeighInsService {
         weighIn.setUser(user);
 
         WeighIns savedWeighIn = weighInsRepository.save(weighIn);
-
         return WeighInsMapper.weighInsEntityToDTO(savedWeighIn);
     }
 
