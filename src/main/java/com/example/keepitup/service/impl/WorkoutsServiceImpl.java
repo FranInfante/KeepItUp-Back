@@ -44,4 +44,9 @@ public class WorkoutsServiceImpl implements WorkoutsService {
     public List<String> getDistinctWorkoutNamesByUserId(Integer userId) {
         return workoutsRepository.findDistinctWorkoutNamesByUserId(userId);
     }
+
+    @Override
+    public void deleteWeighIn(Integer weighInId) {
+        workoutsRepository.deleteById(weighInId);
+    }
 }

@@ -18,4 +18,7 @@ public interface WorkoutsApi {
 
     @GetMapping(UriConstants.UNIQUEWORKOUTSBYID)
     public ResponseEntity<List<String>> getUniqueWorkoutNames(@PathVariable Integer userId);
+
+    @DeleteMapping(UriConstants.BY_ID)
+    ResponseEntity<Void> deleteWorkout(@PathVariable("id") Integer userId);
 }

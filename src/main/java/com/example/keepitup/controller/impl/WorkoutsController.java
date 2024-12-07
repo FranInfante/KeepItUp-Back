@@ -34,4 +34,10 @@ public class WorkoutsController implements WorkoutsApi {
         List<String> uniqueNames = workoutsService.getDistinctWorkoutNamesByUserId(userId);
         return ResponseEntity.ok(uniqueNames);
     }
+
+    @Override
+    public ResponseEntity<Void> deleteWorkout(Integer id) {
+        workoutsService.deleteWeighIn(id);
+        return ResponseEntity.ok().build();
+    }
 }
