@@ -15,4 +15,7 @@ public interface WorkoutsApi {
 
     @GetMapping(UriConstants.BY_ID)
     ResponseEntity<List<WorkoutsDTO>> getWorkoutsByUserId(@PathVariable("id") Integer userId);
+
+    @GetMapping(UriConstants.UNIQUEWORKOUTSBYID)
+    public ResponseEntity<List<String>> getUniqueWorkoutNames(@PathVariable Integer userId);
 }

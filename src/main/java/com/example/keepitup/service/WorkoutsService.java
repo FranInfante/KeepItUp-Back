@@ -9,4 +9,5 @@ import java.util.List;
 public interface WorkoutsService {
     WorkoutsDTO logWorkout(WorkoutsDTO workoutDTO);
     List<WorkoutsDTO> getWorkoutsByUserId(Integer userId);
+    List<String> getDistinctWorkoutNamesByUserId(Integer userId);
 }

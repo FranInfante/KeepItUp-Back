@@ -39,4 +39,9 @@ public class WorkoutsServiceImpl implements WorkoutsService {
         List<Workouts> workouts = workoutsRepository.findByUserId(userId);
         return WorkoutsMapper.listWorkoutsEntityToDTO(workouts);
     }
+
+    @Override
+    public List<String> getDistinctWorkoutNamesByUserId(Integer userId) {
+        return workoutsRepository.findDistinctWorkoutNamesByUserId(userId);
+    }
 }
