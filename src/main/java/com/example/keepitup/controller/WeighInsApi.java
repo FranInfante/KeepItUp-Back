@@ -15,4 +15,7 @@ public interface WeighInsApi {
 
     @GetMapping(UriConstants.BY_ID)
     ResponseEntity<List<WeighInsDTO>> getWeighInsByUserId(@PathVariable("id") Integer userId);
+
+    @DeleteMapping(UriConstants.BY_ID)
+    ResponseEntity<Void> deleteWeighIn(@PathVariable("id") Integer userId);
 }

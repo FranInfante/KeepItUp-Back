@@ -37,4 +37,8 @@ public class WeighInsServiceImpl implements WeighInsService {
         List<WeighIns> weighIns = weighInsRepository.findByUserId(userId);
         return WeighInsMapper.listWeighInsEntityToDTO(weighIns);
     }
+    @Override
+    public void deleteWeighIn(Integer weighInId) {
+        weighInsRepository.deleteById(weighInId);
+    }
 }

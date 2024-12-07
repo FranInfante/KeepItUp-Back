@@ -26,4 +26,10 @@ public class WeighInsController implements WeighInsApi {
         List<WeighInsDTO> weighIns = weighInsService.getWeighInsByUserId(userId);
         return ResponseEntity.ok(weighIns);
     }
+
+    @Override
+    public ResponseEntity<Void> deleteWeighIn(Integer id) {
+        weighInsService.deleteWeighIn(id);
+        return ResponseEntity.ok().build();
+    }
 }
